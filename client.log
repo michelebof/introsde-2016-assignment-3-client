@@ -1,0 +1,213 @@
+Request #1: readPersonList()
+=> Result: OK, list has 4 elements
+
+Person with ID=1
+--> Name: Michele
+--> Lastname: BofF
+--> Email: michele@test.com
+--> Birthdate: 06/08/1993
+--> Current measure: 
+	Measure with ID=1
+	--> Measure Type: weight
+	--> Value: 90
+	--> Data type : double
+	--> Date of registration: 09/08/2016
+
+	Measure with ID=706
+	--> Measure Type: height
+	--> Value: 185
+	--> Data type : integer
+	--> Date of registration: 05/12/2016
+
+------------------
+Person with ID=2
+--> Name: BOH
+--> Lastname: Pippo
+--> Email: pippo@gmail.com
+--> Birthdate: 09/10/2010
+------------------
+Person with ID=3
+--> Name: Francesco
+--> Lastname: Bern
+--> Email: francesco@test.com
+--> Birthdate: 09/12/1993
+------------------
+Person with ID=3554
+--> Name: Alex
+--> Lastname: Macca
+--> Email: alex@macca.com
+--> Birthdate: 31/07/1993
+--> Current measure: 
+	Measure with ID=5
+	--> Measure Type: height
+	--> Value: 183
+	--> Data type : double
+	--> Date of registration: 28/11/2016
+
+
+************************************
+
+Request #2: readPerson(int id)
+=> Result: OK, Found Person by id =1
+
+Person with ID=1
+--> Name: Michele
+--> Lastname: BofF
+--> Email: michele@test.com
+--> Birthdate: 06/08/1993
+--> Current measure: 
+	Measure with ID=1
+	--> Measure Type: weight
+	--> Value: 90
+	--> Data type : double
+	--> Date of registration: 09/08/2016
+
+	Measure with ID=706
+	--> Measure Type: height
+	--> Value: 185
+	--> Data type : integer
+	--> Date of registration: 05/12/2016
+
+
+************************************
+
+Request #3: updatePerson(Person p)
+=> Result: OK, The lastname is changed
+
+Person with ID=1
+--> Name: Michele
+--> Lastname: BofFF
+--> Email: michele@test.com
+--> Birthdate: 06/08/1993
+--> Current measure: 
+	Measure with ID=1
+	--> Measure Type: weight
+	--> Value: 90
+	--> Data type : double
+	--> Date of registration: 09/08/2016
+
+	Measure with ID=706
+	--> Measure Type: height
+	--> Value: 185
+	--> Data type : integer
+	--> Date of registration: 05/12/2016
+
+
+************************************
+
+Request #4: createPerson(Person p)
+=> Result: OK, Create person with id =10452
+
+Person with ID=10452
+--> Name: Miky
+--> Lastname: Test
+--> Email: michele@test.it
+--> Birthdate: 07/08/1993
+--> Current measure: 
+	Measure with ID=707
+	--> Measure Type: weight
+	--> Value: 176
+	--> Data type : integer
+	--> Date of registration: 01/12/2016
+
+
+************************************
+
+Request #5: deletePerson(int id)
+=> Result: OK,the person with id 10452 was deleted 
+
+Person with ID=10452
+--> Name: Miky
+--> Lastname: Test
+--> Email: michele@test.it
+--> Birthdate: 07/08/1993
+--> Current measure: 
+	Measure with ID=707
+	--> Measure Type: weight
+	--> Value: 176
+	--> Data type : integer
+	--> Date of registration: 01/12/2016
+
+
+************************************
+
+Request #6: readPersonHistory(Long id, String measureType)
+=> Result: OK,the person has 2 weight 
+
+Measure with ID=1
+	--> Measure Type: weight
+	--> Value: 90
+	--> Data type : double
+	--> Date of registration: 09/08/2016
+Measure with ID=2
+	--> Measure Type: weight
+	--> Value: 80
+	--> Data type : double
+	--> Date of registration: 06/08/1993
+
+************************************
+
+Request #7: readMeasureTypes()
+=> Result: OK,the person has 5 weight 
+
+Measure with ID=1
+	--> Measure Type: weight
+	--> Value: 90
+	--> Data type : double
+	--> Date of registration: 09/08/2016
+Measure with ID=2
+	--> Measure Type: weight
+	--> Value: 80
+	--> Data type : double
+	--> Date of registration: 06/08/1993
+Measure with ID=5
+	--> Measure Type: height
+	--> Value: 183
+	--> Data type : double
+	--> Date of registration: 28/11/2016
+Measure with ID=55
+	--> Measure Type: height
+	--> Value: 180
+	--> Data type : integer
+	--> Date of registration: 30/11/2016
+Measure with ID=706
+	--> Measure Type: height
+	--> Value: 185
+	--> Data type : integer
+	--> Date of registration: 05/12/2016
+
+************************************
+
+Request #8: readPersonMeasure(Long id, String measureType, Long mid)
+=> Result: OK, Found Measure by mid =1
+
+Measure with ID=1
+	--> Measure Type: weight
+	--> Value: 90
+	--> Data type : double
+	--> Date of registration: 09/08/2016
+
+************************************
+
+Request #9: savePersonMeasure(Long id, Measure m)
+=> Result: OK, New Measure with mid =708
+
+Measure with ID=708
+	--> Measure Type: height
+	--> Value: 180
+	--> Data type : integer
+	--> Date of registration: 05/12/2016
+
+************************************
+
+Request #10: updatePersonMeasure(Long id, Measure m)
+=> Result: OK, the value is changed at 185
+
+Measure with ID=708
+	--> Measure Type: height
+	--> Value: 185
+	--> Data type : integer
+	--> Date of registration: 05/12/2016
+
+************************************
+
