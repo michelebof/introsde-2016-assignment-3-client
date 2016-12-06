@@ -189,8 +189,7 @@ public class PeopleClient{
 	private static int request4(int id){
 		start = "Request #4: createPerson(Person p)";
 		info = "create a new Person with the personal information and current healtprofile and return it";
-		Person p = people.readPerson(id);
-		p.setIdPerson(0);
+		Person p = new Person();
 		p.setName("Miky");
 		p.setLastname("Test");
 		p.setEmail("michele@test.it");
@@ -200,10 +199,9 @@ public class PeopleClient{
 		m.setValue("176");
 		m.setValueType("integer");
 		m.setDate("01/12/2016");
-		List<Measure> cp = p.getCurrentHealth().getMeasure();
-		cp.clear();
-		cp.add(m);
-		p.setCurrentHealth(p.getCurrentHealth());
+		Person.CurrentHealth cp = new Person.CurrentHealth();
+		cp.getMeasure().add(m);
+		p.setCurrentHealth(cp);
 		Holder<Person> holder=new Holder<Person>(p);
 		people.createPerson(holder);
 		p=holder.value;
