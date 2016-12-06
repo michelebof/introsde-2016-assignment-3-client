@@ -97,7 +97,7 @@
 		<echo message="catalog.xml has been deleted" />
 	</target>
 
-	<target name="compile">
+	<target name="compile" >
 		<echo message="Compile target has been called" />
 		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" includeAntRuntime="false">
 		</javac>
@@ -109,7 +109,7 @@
 	</target>
 
 	
-	<target name="execute.client" depends="compile">
+	<target name="execute.client" depends="init, compile">
 		<echo message="Now I execute the client" />
 		<java classname="introsde.document.client.PeopleClient" classpath="${build.dir}">
 			<classpath>

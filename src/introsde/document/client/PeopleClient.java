@@ -30,6 +30,7 @@ import introsde.document.ws.ParseException_Exception;
 public class PeopleClient{
 	
 	private static String start;
+	private static String info;
 	private static String result;
 	private static PrintStream print;
 	private static String doc;
@@ -83,12 +84,14 @@ public class PeopleClient{
 		System.out.println("Request #"+request+" was written in the log file");
 		PrintStream stream = print;
 		stream.println(start);
+		stream.println("=> Info: "+info);
 		stream.println("=> Result: "+ result);
 		stream.println();
 		stream.println(doc);
 		stream.println("************************************");
 		stream.println();
 //		System.out.println(start);
+//		System.out.println(info);
 //		System.out.println("=> Result: "+ result);
 //		System.out.println();
 //		System.out.println(doc);
@@ -133,6 +136,7 @@ public class PeopleClient{
 	//	Request #1 - Return the first id
 	private static int request1(){
 		start = "Request #1: readPersonList()";
+		info = "return the list of all the people in the database";
 		doc = "";
         List<Person> pList = people.readPersonList();
         if (!pList.isEmpty()){
@@ -154,6 +158,7 @@ public class PeopleClient{
 	//	Request #2 - return the information of the Person with given id
 	private static Person request2(int id){
 		start = "Request #2: readPerson(int id)";
+		info = "return the personal information and the current measures of the first Person in db (id="+id+")";
         Person p = people.readPerson(id);
         if (p!=null)
         	result="OK, Found Person by id ="+id;
@@ -166,6 +171,7 @@ public class PeopleClient{
 	//	Request #3
 	private static void request3(Person p){
 		start = "Request #3: updatePerson(Person p)";
+		info = "update the Personal information of the Person returned in request #2 with an extra F in the last name and return it";
 		String newLastname = p.getLastname()+"F";
 		p.setCurrentHealth(null);	// because the update method should modify only the personal information, not the health profile
 		p.setLastname(newLastname); // modify the lastname with the current plus one F
@@ -182,6 +188,7 @@ public class PeopleClient{
 	//	Request #4 - return the id of the new Person 
 	private static int request4(int id){
 		start = "Request #4: createPerson(Person p)";
+		info = "create a new Person with the personal information and current healtprofile and return it";
 		Person p = people.readPerson(id);
 		p.setIdPerson(0);
 		p.setName("Miky");
@@ -211,6 +218,7 @@ public class PeopleClient{
 	//	Request #5 - remove the person created in request 4
 	private static void request5(int id){
 		start = "Request #5: deletePerson(int id)";
+		info = "cancel the Person created in the request #4 with id="+id;
         int ris= people.deletePerson(id);
         if (ris==0)
         	result="OK,the person with id "+id+" was deleted ";
@@ -221,6 +229,7 @@ public class PeopleClient{
 	//	Request #6
 	private static int request6(int id, String type){
 		start = "Request #6: readPersonHistory(Long id, String measureType)";
+		info = "return the list of values (the history) of "+type+" for Person with id="+id;
 		doc = "";
         List<Measure> list = people.readPersonHistory(id, type);
         for(int i=0;i<list.size();i++){
@@ -240,13 +249,14 @@ public class PeopleClient{
 	//	Request #7
 	private static void request7(){
 		start = "Request #7: readMeasureTypes()";
+		info = "return the list of all measures in the database";
 		doc = "";
         List<Measure> list = people.readMeasureTypes();
         for(int i=0;i<list.size();i++){
         	doc += printMeasure(list.get(i));
         }
         if (!list.isEmpty())
-        	result="OK,the person has "+ list.size() +" weight ";
+        	result="OK, there are "+ list.size() +" measure in the database ";
         else
         	result="ERROR, the person hasn't measure of weight";
 	}
@@ -254,6 +264,7 @@ public class PeopleClient{
 	//	Request #8
 	private static void request8(int id, String type, int mid){
 		start = "Request #8: readPersonMeasure(Long id, String measureType, Long mid)";
+		info = "return the measure with mid="+ mid +" and type="+type+" for Person with id="+id;
 		doc = "";
         Measure m = people.readPersonMeasure(id, type, mid);
         doc = printMeasure(m);
@@ -266,6 +277,7 @@ public class PeopleClient{
 	//	Request #9
 	private static Measure request9(int id) throws ParseException_Exception{
 		start = "Request #9: savePersonMeasure(Long id, Measure m)";
+		info = "save a new measure of Person identified with id="+ id +" and archive the old value in the history";
 		doc = "";
 		Measure m = new Measure();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -288,9 +300,10 @@ public class PeopleClient{
 	
 	//	Request #10
 	private static void request10(int id, Measure m){
-		start = "Request #10: updatePersonMeasure(Long id, Measure m)";
-		doc = "";
 		String newValue = String.valueOf(Integer.parseInt(m.getValue())+5);
+		start = "Request #10: updatePersonMeasure(Long id, Measure m)";
+		info = "update the value of the measure created in request #9, the new value is "+newValue;
+		doc = "";	
 		m.setValue(newValue);
 		Holder<Measure> measure = new Holder<Measure>(m);
         people.updatePersonMeasure(id, measure);

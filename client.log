@@ -1,9 +1,10 @@
 Request #1: readPersonList()
+=> Info: return the list of all the people in the database
 => Result: OK, list has 4 elements
 
 Person with ID=1
 --> Name: Michele
---> Lastname: BofF
+--> Lastname: Bof
 --> Email: michele@test.com
 --> Birthdate: 06/08/1993
 --> Current measure: 
@@ -13,11 +14,11 @@ Person with ID=1
 	--> Data type : double
 	--> Date of registration: 09/08/2016
 
-	Measure with ID=706
+	Measure with ID=55
 	--> Measure Type: height
-	--> Value: 185
+	--> Value: 180
 	--> Data type : integer
-	--> Date of registration: 05/12/2016
+	--> Date of registration: 30/11/2016
 
 ------------------
 Person with ID=2
@@ -48,7 +49,33 @@ Person with ID=3554
 ************************************
 
 Request #2: readPerson(int id)
+=> Info: return the personal information and the current measures of the first Person in db (id=1)
 => Result: OK, Found Person by id =1
+
+Person with ID=1
+--> Name: Michele
+--> Lastname: Bof
+--> Email: michele@test.com
+--> Birthdate: 06/08/1993
+--> Current measure: 
+	Measure with ID=1
+	--> Measure Type: weight
+	--> Value: 90
+	--> Data type : double
+	--> Date of registration: 09/08/2016
+
+	Measure with ID=55
+	--> Measure Type: height
+	--> Value: 180
+	--> Data type : integer
+	--> Date of registration: 30/11/2016
+
+
+************************************
+
+Request #3: updatePerson(Person p)
+=> Info: update the Personal information of the Person returned in request #2 with an extra F in the last name and return it
+=> Result: OK, The lastname is changed
 
 Person with ID=1
 --> Name: Michele
@@ -62,49 +89,26 @@ Person with ID=1
 	--> Data type : double
 	--> Date of registration: 09/08/2016
 
-	Measure with ID=706
+	Measure with ID=55
 	--> Measure Type: height
-	--> Value: 185
+	--> Value: 180
 	--> Data type : integer
-	--> Date of registration: 05/12/2016
-
-
-************************************
-
-Request #3: updatePerson(Person p)
-=> Result: OK, The lastname is changed
-
-Person with ID=1
---> Name: Michele
---> Lastname: BofFF
---> Email: michele@test.com
---> Birthdate: 06/08/1993
---> Current measure: 
-	Measure with ID=1
-	--> Measure Type: weight
-	--> Value: 90
-	--> Data type : double
-	--> Date of registration: 09/08/2016
-
-	Measure with ID=706
-	--> Measure Type: height
-	--> Value: 185
-	--> Data type : integer
-	--> Date of registration: 05/12/2016
+	--> Date of registration: 30/11/2016
 
 
 ************************************
 
 Request #4: createPerson(Person p)
-=> Result: OK, Create person with id =10452
+=> Info: create a new Person with the personal information and current healtprofile and return it
+=> Result: OK, Create person with id =10451
 
-Person with ID=10452
+Person with ID=10451
 --> Name: Miky
 --> Lastname: Test
 --> Email: michele@test.it
 --> Birthdate: 07/08/1993
 --> Current measure: 
-	Measure with ID=707
+	Measure with ID=705
 	--> Measure Type: weight
 	--> Value: 176
 	--> Data type : integer
@@ -114,15 +118,16 @@ Person with ID=10452
 ************************************
 
 Request #5: deletePerson(int id)
-=> Result: OK,the person with id 10452 was deleted 
+=> Info: cancel the Person created in the request #4 with id=10451
+=> Result: OK,the person with id 10451 was deleted 
 
-Person with ID=10452
+Person with ID=10451
 --> Name: Miky
 --> Lastname: Test
 --> Email: michele@test.it
 --> Birthdate: 07/08/1993
 --> Current measure: 
-	Measure with ID=707
+	Measure with ID=705
 	--> Measure Type: weight
 	--> Value: 176
 	--> Data type : integer
@@ -132,6 +137,7 @@ Person with ID=10452
 ************************************
 
 Request #6: readPersonHistory(Long id, String measureType)
+=> Info: return the list of values (the history) of weight for Person with id=1
 => Result: OK,the person has 2 weight 
 
 Measure with ID=1
@@ -148,7 +154,8 @@ Measure with ID=2
 ************************************
 
 Request #7: readMeasureTypes()
-=> Result: OK,the person has 5 weight 
+=> Info: return the list of all measures in the database
+=> Result: OK, there are 4 measure in the database 
 
 Measure with ID=1
 	--> Measure Type: weight
@@ -170,15 +177,11 @@ Measure with ID=55
 	--> Value: 180
 	--> Data type : integer
 	--> Date of registration: 30/11/2016
-Measure with ID=706
-	--> Measure Type: height
-	--> Value: 185
-	--> Data type : integer
-	--> Date of registration: 05/12/2016
 
 ************************************
 
 Request #8: readPersonMeasure(Long id, String measureType, Long mid)
+=> Info: return the measure with mid=1 and type=weight for Person with id=1
 => Result: OK, Found Measure by mid =1
 
 Measure with ID=1
@@ -190,24 +193,26 @@ Measure with ID=1
 ************************************
 
 Request #9: savePersonMeasure(Long id, Measure m)
-=> Result: OK, New Measure with mid =708
+=> Info: save a new measure of Person identified with id=1 and archive the old value in the history
+=> Result: OK, New Measure with mid =706
 
-Measure with ID=708
+Measure with ID=706
 	--> Measure Type: height
 	--> Value: 180
 	--> Data type : integer
-	--> Date of registration: 05/12/2016
+	--> Date of registration: 06/12/2016
 
 ************************************
 
 Request #10: updatePersonMeasure(Long id, Measure m)
+=> Info: update the value of the measure created in request #9, the new value is 185
 => Result: OK, the value is changed at 185
 
-Measure with ID=708
+Measure with ID=706
 	--> Measure Type: height
 	--> Value: 185
 	--> Data type : integer
-	--> Date of registration: 05/12/2016
+	--> Date of registration: 06/12/2016
 
 ************************************
 
