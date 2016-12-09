@@ -11,12 +11,15 @@ In the /src folder there are the Java classes; the 'client' package contains two
 
 #### My server can be found here:
 Link git: 	https://github.com/michelebof/introsde-2016-assignment-3
+
 Link wsdl file: https://introsde2016-assignment3.herokuapp.com/ws/people?wsdl
 
 
 #### Information of my partner student:
 Name:	Sara Gasperetti
+
 Link git:	https://github.com/SaraGasperetti
+
 Link wsdl file:	https://introsde2016-assignment-3.herokuapp.com/soap/people?wsdl 
 
 

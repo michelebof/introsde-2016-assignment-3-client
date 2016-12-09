@@ -110,7 +110,19 @@
 
 	
 	<target name="execute.client" depends="init, compile">
-		<echo message="Now I execute the client" />
+		<echo message="Now I execute the PARTNER's client" />
+		<java classname="introsde.document.client.PartnerClient" classpath="${build.dir}">
+			<classpath>
+				<fileset dir="${lib.dir}">
+			    	<include name="**/*.jar" />
+			    	<include name="*.jar" />
+			    </fileset>
+			</classpath>
+		</java>
+	</target>
+	
+	<target name="execute.MYclient" depends="init, compile">
+		<echo message="Now I execute MY client" />
 		<java classname="introsde.document.client.PeopleClient" classpath="${build.dir}">
 			<classpath>
 				<fileset dir="${lib.dir}">

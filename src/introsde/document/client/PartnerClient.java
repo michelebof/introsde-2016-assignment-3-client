@@ -55,7 +55,8 @@ public class PartnerClient{
     }
     
     public static void getURI(){
-    	System.out.println("Server WSDL url: https://introsde2016-assignment3.herokuapp.com/ws/people?wsdl");
+    	PrintStream stream = print;
+    	stream.println("Server WSDL url: https://introsde2016-assignment-3.herokuapp.com/soap/people?wsdl");
     }
     
     

@@ -1,10 +1,11 @@
+Server WSDL url: https://introsde2016-assignment3.herokuapp.com/ws/people?wsdl
 Request #1: readPersonList()
 => Info: return the list of all the people in the database
-=> Result: OK, list has 4 elements
+=> Result: OK, list has 5 elements
 
 Person with ID=1
 --> Name: Michele
---> Lastname: BofF
+--> Lastname: Bof
 --> Email: michele@test.com
 --> Birthdate: 06/08/1993
 --> Current measure: 
@@ -14,18 +15,31 @@ Person with ID=1
 	--> Data type : double
 	--> Date of registration: 09/08/2016
 
-	Measure with ID=706
+	Measure with ID=55
 	--> Measure Type: height
-	--> Value: 185
+	--> Value: 180
 	--> Data type : integer
-	--> Date of registration: 09/12/2016
+	--> Date of registration: 30/11/2016
 
 ------------------
 Person with ID=2
---> Name: BOH
+--> Name: Pinco
 --> Lastname: Pippo
 --> Email: pippo@gmail.com
 --> Birthdate: 09/10/2010
+--> Current measure: 
+	Measure with ID=3556
+	--> Measure Type: weight
+	--> Value: 74
+	--> Data type : double
+	--> Date of registration: 30/11/2016
+
+	Measure with ID=3555
+	--> Measure Type: height
+	--> Value: 178
+	--> Data type : integer
+	--> Date of registration: 30/11/2016
+
 ------------------
 Person with ID=3
 --> Name: Francesco
@@ -39,18 +53,55 @@ Person with ID=3554
 --> Email: alex@macca.com
 --> Birthdate: 31/07/1993
 --> Current measure: 
+	Measure with ID=3554
+	--> Measure Type: weight
+	--> Value: 98
+	--> Data type : double
+	--> Date of registration: 28/11/2016
+
 	Measure with ID=5
 	--> Measure Type: height
 	--> Value: 183
 	--> Data type : double
 	--> Date of registration: 28/11/2016
 
+------------------
+Person with ID=10451
+--> Name: Riccardo
+--> Lastname: Costan
+--> Email: riccardo@costan.it
+--> Birthdate: 02/08/1993
 
 ************************************
 
 Request #2: readPerson(int id)
 => Info: return the personal information and the current measures of the first Person in db (id=1)
 => Result: OK, Found Person by id =1
+
+Person with ID=1
+--> Name: Michele
+--> Lastname: Bof
+--> Email: michele@test.com
+--> Birthdate: 06/08/1993
+--> Current measure: 
+	Measure with ID=1
+	--> Measure Type: weight
+	--> Value: 90
+	--> Data type : double
+	--> Date of registration: 09/08/2016
+
+	Measure with ID=55
+	--> Measure Type: height
+	--> Value: 180
+	--> Data type : integer
+	--> Date of registration: 30/11/2016
+
+
+************************************
+
+Request #3: updatePerson(Person p)
+=> Info: update the Personal information of the Person returned in request #2 with an extra F in the last name and return it
+=> Result: OK, The lastname is changed
 
 Person with ID=1
 --> Name: Michele
@@ -64,36 +115,11 @@ Person with ID=1
 	--> Data type : double
 	--> Date of registration: 09/08/2016
 
-	Measure with ID=706
+	Measure with ID=55
 	--> Measure Type: height
-	--> Value: 185
+	--> Value: 180
 	--> Data type : integer
-	--> Date of registration: 09/12/2016
-
-
-************************************
-
-Request #3: updatePerson(Person p)
-=> Info: update the Personal information of the Person returned in request #2 with an extra F in the last name and return it
-=> Result: OK, The lastname is changed
-
-Person with ID=1
---> Name: Michele
---> Lastname: BofFF
---> Email: michele@test.com
---> Birthdate: 06/08/1993
---> Current measure: 
-	Measure with ID=1
-	--> Measure Type: weight
-	--> Value: 90
-	--> Data type : double
-	--> Date of registration: 09/08/2016
-
-	Measure with ID=706
-	--> Measure Type: height
-	--> Value: 185
-	--> Data type : integer
-	--> Date of registration: 09/12/2016
+	--> Date of registration: 30/11/2016
 
 
 ************************************
@@ -108,7 +134,7 @@ Person with ID=10452
 --> Email: michele@test.it
 --> Birthdate: 07/08/1993
 --> Current measure: 
-	Measure with ID=707
+	Measure with ID=3557
 	--> Measure Type: weight
 	--> Value: 176
 	--> Data type : integer
@@ -127,7 +153,7 @@ Person with ID=10452
 --> Email: michele@test.it
 --> Birthdate: 07/08/1993
 --> Current measure: 
-	Measure with ID=707
+	Measure with ID=3557
 	--> Measure Type: weight
 	--> Value: 176
 	--> Data type : integer
@@ -155,7 +181,7 @@ Measure with ID=2
 
 Request #7: readMeasureTypes()
 => Info: return the list of all measures in the database
-=> Result: OK, there are 5 measure in the database 
+=> Result: OK, there are 8 measure in the database 
 
 Measure with ID=1
 	--> Measure Type: weight
@@ -177,11 +203,26 @@ Measure with ID=55
 	--> Value: 180
 	--> Data type : integer
 	--> Date of registration: 30/11/2016
-Measure with ID=706
+Measure with ID=705
 	--> Measure Type: height
-	--> Value: 185
+	--> Value: 175
 	--> Data type : integer
-	--> Date of registration: 09/12/2016
+	--> Date of registration: 30/11/2016
+Measure with ID=3554
+	--> Measure Type: weight
+	--> Value: 98
+	--> Data type : double
+	--> Date of registration: 28/11/2016
+Measure with ID=3555
+	--> Measure Type: height
+	--> Value: 178
+	--> Data type : integer
+	--> Date of registration: 30/11/2016
+Measure with ID=3556
+	--> Measure Type: weight
+	--> Value: 74
+	--> Data type : double
+	--> Date of registration: 30/11/2016
 
 ************************************
 
@@ -199,9 +240,9 @@ Measure with ID=1
 
 Request #9: savePersonMeasure(Long id, Measure m)
 => Info: save a new measure of Person identified with id=1 and archive the old value in the history
-=> Result: OK, New Measure with mid =708
+=> Result: OK, New Measure with mid =3558
 
-Measure with ID=708
+Measure with ID=3558
 	--> Measure Type: height
 	--> Value: 180
 	--> Data type : integer
@@ -213,7 +254,7 @@ Request #10: updatePersonMeasure(Long id, Measure m)
 => Info: update the value of the measure created in request #9, the new value is 185
 => Result: OK, the value is changed at 185
 
-Measure with ID=708
+Measure with ID=3558
 	--> Measure Type: height
 	--> Value: 185
 	--> Data type : integer
