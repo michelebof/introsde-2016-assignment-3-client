@@ -1,18 +1,19 @@
+Server WSDL url: https://introsde2016-assignment-3.herokuapp.com/soap/people?wsdl
 Request #1: getPeopleList()
 => Info: return the list of all the people in the database
 => Result: OK, list has 10 elements
 
 Person with ID=1
---> Name: John
---> Lastname: Norris
+--> Name: Chuck
+--> Lastname: NorrisF
 --> Email: chuck.norris@gmail.com
 --> Birthdate: 31/12/1944
 --> Current measure: 
-	Measure with ID=457
+	Measure with ID=1008
 	--> Measure Type: height
-	--> Value: 140
+	--> Value: 185
 	--> Data type : integer
-	--> Date of registration: 22/05/2016
+	--> Date of registration: 09/12/2016
 
 	Measure with ID=7
 	--> Measure Type: weight
@@ -156,7 +157,7 @@ Person with ID=10
 --> Current measure: 
 	Measure with ID=808
 	--> Measure Type: height
-	--> Value: 156
+	--> Value: 160
 	--> Data type : integer
 	--> Date of registration: 10/10/2016
 
@@ -174,16 +175,16 @@ Request #2: readPerson(int id)
 => Result: OK, Found Person by id =1
 
 Person with ID=1
---> Name: John
---> Lastname: Norris
+--> Name: Chuck
+--> Lastname: NorrisF
 --> Email: chuck.norris@gmail.com
 --> Birthdate: 31/12/1944
 --> Current measure: 
-	Measure with ID=457
+	Measure with ID=1008
 	--> Measure Type: height
-	--> Value: 140
+	--> Value: 185
 	--> Data type : integer
-	--> Date of registration: 22/05/2016
+	--> Date of registration: 09/12/2016
 
 	Measure with ID=7
 	--> Measure Type: weight
@@ -199,16 +200,16 @@ Request #3: updatePerson(Person p)
 => Result: OK, The lastname is changed
 
 Person with ID=1
---> Name: John
---> Lastname: NorrisF
+--> Name: Chuck
+--> Lastname: NorrisFF
 --> Email: chuck.norris@gmail.com
 --> Birthdate: 31/12/1944
 --> Current measure: 
-	Measure with ID=457
+	Measure with ID=1008
 	--> Measure Type: height
-	--> Value: 140
+	--> Value: 185
 	--> Data type : integer
-	--> Date of registration: 22/05/2016
+	--> Date of registration: 09/12/2016
 
 	Measure with ID=7
 	--> Measure Type: weight
@@ -221,15 +222,15 @@ Person with ID=1
 
 Request #4: createPerson(Person p)
 => Info: create a new Person with the personal information and current healtprofile and return it
-=> Result: OK, Create person with id =1302
+=> Result: OK, Create person with id =1353
 
-Person with ID=1302
+Person with ID=1353
 --> Name: Miky
 --> Lastname: Test
 --> Email: michele@test.it
 --> Birthdate: 07/08/1993
 --> Current measure: 
-	Measure with ID=957
+	Measure with ID=1009
 	--> Measure Type: weight
 	--> Value: 176
 	--> Data type : integer
@@ -239,16 +240,16 @@ Person with ID=1302
 ************************************
 
 Request #5: deletePerson(int id)
-=> Info: cancel the Person created in the request #4 with id=1302
-=> Result: OK,the person with id 1302 was deleted 
+=> Info: cancel the Person created in the request #4 with id=1353
+=> Result: OK,the person with id 1353 was deleted 
 
-Person with ID=1302
+Person with ID=1353
 --> Name: Miky
 --> Lastname: Test
 --> Email: michele@test.it
 --> Birthdate: 07/08/1993
 --> Current measure: 
-	Measure with ID=957
+	Measure with ID=1009
 	--> Measure Type: weight
 	--> Value: 176
 	--> Data type : integer
@@ -353,11 +354,6 @@ Measure with ID=457
 	--> Value: 140
 	--> Data type : integer
 	--> Date of registration: 22/05/2016
-Measure with ID=507
-	--> Measure Type: height
-	--> Value: 140
-	--> Data type : integer
-	--> Date of registration: 22/05/2016
 Measure with ID=607
 	--> Measure Type: weight
 	--> Value: 73
@@ -405,9 +401,14 @@ Measure with ID=807
 	--> Date of registration: 19/05/2015
 Measure with ID=808
 	--> Measure Type: height
-	--> Value: 156
+	--> Value: 160
 	--> Data type : integer
 	--> Date of registration: 10/10/2016
+Measure with ID=1008
+	--> Measure Type: height
+	--> Value: 185
+	--> Data type : integer
+	--> Date of registration: 09/12/2016
 
 ************************************
 
@@ -425,9 +426,9 @@ Measure with ID=1
 
 Request #9: savePersonMeasure(Long id, Measure m)
 => Info: save a new measure of Person identified with id=1 and archive the old value in the history
-=> Result: OK, New Measure with mid =958
+=> Result: OK, New Measure with mid =1010
 
-Measure with ID=958
+Measure with ID=1010
 	--> Measure Type: height
 	--> Value: 180
 	--> Data type : integer
@@ -439,7 +440,7 @@ Request #10: updatePersonMeasure(Long id, Measure m)
 => Info: update the value of the measure created in request #9, the new value is 185
 => Result: OK, the value is changed at 185
 
-Measure with ID=958
+Measure with ID=1010
 	--> Measure Type: height
 	--> Value: 185
 	--> Data type : integer
