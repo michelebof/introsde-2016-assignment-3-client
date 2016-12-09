@@ -10,13 +10,12 @@ import java.util.List;
 import javax.xml.transform.TransformerException;
 import javax.xml.ws.Holder;
 
-import introsde.document.ws.PeopleService;
-import introsde.document.ws.People;
-import introsde.document.ws.Person;
-import introsde.document.ws.Measure;
-import introsde.document.ws.ParseException_Exception;
+import introsde.assignment.soap.PeopleService;
+import introsde.assignment.soap.People;
+import introsde.assignment.soap.Person;
+import introsde.assignment.soap.Measure;
 
-public class PeopleClient{
+public class PartnerClient{
 	
 	private static String start;
 	private static String info;
@@ -32,17 +31,17 @@ public class PeopleClient{
     	initialize();
     	getURI();
     	String type = "weight";
-        int first = request1();
+        long first = request1();
         printResult();
         Person person = request2(first); 
         printResult();
         request3(person);
         printResult();
-        int delete = request4();
+        long delete = request4();
         printResult();
         request5(delete);
         printResult();
-        int mid = request6(first, type);
+        long mid = request6(first, type);
         printResult();
         request7();
         printResult();
@@ -61,7 +60,7 @@ public class PeopleClient{
     
     
     private static void initialize() throws FileNotFoundException{
-    	FileOutputStream file = new FileOutputStream("client.log");
+    	FileOutputStream file = new FileOutputStream("partner-client.log");
         print = new PrintStream(file);
         service = new PeopleService();
         people = service.getPeopleImplPort();
@@ -92,7 +91,7 @@ public class PeopleClient{
 	
 	private static String printPerson(Person p){
 		String res= "Person with ID="+p.getIdPerson()+"\n"; 
-		res += "--> Name: "+p.getName()+"\n";
+		res += "--> Name: "+p.getFirstname()+"\n";
 		res += "--> Lastname: "+p.getLastname()+"\n";
 		res += "--> Email: "+p.getEmail()+"\n";
 		res += "--> Birthdate: "+p.getBirthdate()+"\n";
@@ -111,10 +110,10 @@ public class PeopleClient{
 	
 	private static String printMeasure(Measure m){
 		String res = "Measure with ID="+m.getIdMeasure()+"\n";
-		res += "\t--> Measure Type: "+m.getType()+"\n";
-		res += "\t--> Value: "+m.getValue()+"\n";
-		res += "\t--> Data type : "+m.getValueType()+"\n";
-		res += "\t--> Date of registration: "+m.getDate()+"\n";		
+		res += "\t--> Measure Type: "+m.getMeasureType()+"\n";
+		res += "\t--> Value: "+m.getMeasureValue()+"\n";
+		res += "\t--> Data type : "+m.getMeasureValueType()+"\n";
+		res += "\t--> Date of registration: "+m.getDateRegistered()+"\n";		
 		return res;
 	}
 	
@@ -123,11 +122,11 @@ public class PeopleClient{
 	//	List of request
 	
 	//	Request #1 - Return the first id
-	private static int request1(){
-		start = "Request #1: readPersonList()";
+	private static long request1(){
+		start = "Request #1: getPeopleList()";
 		info = "return the list of all the people in the database";
 		doc = "";
-        List<Person> pList = people.readPersonList();
+        List<Person> pList = people.getPeopleList();
         if (!pList.isEmpty()){
         	result="OK, list has "+pList.size()+" elements";
         	for (int i=0;i<pList.size()-1;i++){
@@ -145,7 +144,7 @@ public class PeopleClient{
 	}
 
 	//	Request #2 - return the information of the Person with given id
-	private static Person request2(int id){
+	private static Person request2(long id){
 		start = "Request #2: readPerson(int id)";
 		info = "return the personal information and the current measures of the first Person in db (id="+id+")";
         Person p = people.readPerson(id);
@@ -175,19 +174,19 @@ public class PeopleClient{
 	}
 	
 	//	Request #4 - return the id of the new Person 
-	private static int request4(){
+	private static long request4(){
 		start = "Request #4: createPerson(Person p)";
 		info = "create a new Person with the personal information and current healtprofile and return it";
 		Person p = new Person();
-		p.setName("Miky");
+		p.setFirstname("Miky");
 		p.setLastname("Test");
 		p.setEmail("michele@test.it");
 		p.setBirthdate("07/08/1993"); 
 		Measure m = new Measure();
-		m.setType("weight");
-		m.setValue("176");
-		m.setValueType("integer");
-		m.setDate("01/12/2016");
+		m.setMeasureType("weight");
+		m.setMeasureValue("176");
+		m.setMeasureValueType("integer");
+		m.setDateRegistered("01/12/2016");
 		Person.CurrentHealth cp = new Person.CurrentHealth();
 		cp.getMeasure().add(m);
 		p.setCurrentHealth(cp);
@@ -203,7 +202,7 @@ public class PeopleClient{
 	}
 	
 	//	Request #5 - remove the person created in request 4
-	private static void request5(int id){
+	private static void request5(long id){
 		start = "Request #5: deletePerson(int id)";
 		info = "cancel the Person created in the request #4 with id="+id;
         int ris= people.deletePerson(id);
@@ -214,7 +213,7 @@ public class PeopleClient{
 	}
 		
 	//	Request #6
-	private static int request6(int id, String type){
+	private static long request6(long id, String type){
 		start = "Request #6: readPersonHistory(Long id, String measureType)";
 		info = "return the list of values (the history) of "+type+" for Person with id="+id;
 		doc = "";
@@ -249,7 +248,7 @@ public class PeopleClient{
 	}
 	
 	//	Request #8
-	private static void request8(int id, String type, int mid){
+	private static void request8(long id, String type, long mid){
 		start = "Request #8: readPersonMeasure(Long id, String measureType, Long mid)";
 		info = "return the measure with mid="+ mid +" and type="+type+" for Person with id="+id;
 		doc = "";
@@ -262,16 +261,16 @@ public class PeopleClient{
 	}
 	
 	//	Request #9
-	private static Measure request9(int id) throws ParseException_Exception{
+	private static Measure request9(long id){
 		start = "Request #9: savePersonMeasure(Long id, Measure m)";
 		info = "save a new measure of Person identified with id="+ id +" and archive the old value in the history";
 		doc = "";
 		Measure m = new Measure();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    	m.setDate(sdf.format(new Date()));
-    	m.setType("height");
-    	m.setValue("180");
-    	m.setValueType("integer");
+    	m.setDateRegistered(sdf.format(new Date()));
+    	m.setMeasureType("height");
+    	m.setMeasureValue("180");
+    	m.setMeasureValueType("integer");
 		Holder<Measure> measure = new Holder<Measure>(m);
 		people.savePersonMeasure(id, measure);
 		m = measure.value;
@@ -286,17 +285,17 @@ public class PeopleClient{
 	}
 	
 	//	Request #10
-	private static void request10(int id, Measure m){
-		String newValue = String.valueOf(Integer.parseInt(m.getValue())+5);
+	private static void request10(long id, Measure m){
+		String newValue = String.valueOf(Integer.parseInt(m.getMeasureValue())+5);
 		start = "Request #10: updatePersonMeasure(Long id, Measure m)";
 		info = "update the value of the measure created in request #9, the new value is "+newValue;
 		doc = "";	
-		m.setValue(newValue);
+		m.setMeasureValue(newValue);
 		Holder<Measure> measure = new Holder<Measure>(m);
         people.updatePersonMeasure(id, measure);
         m = measure.value;
         doc = printMeasure(m);
-        if (newValue.equals(m.getValue()))
+        if (newValue.equals(m.getMeasureValue()))
         	result="OK, the value is changed at "+newValue;
         else
         	result="ERROR, the value isn't changed ";
